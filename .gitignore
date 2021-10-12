@@ -1,3 +1,12 @@
+# custom
+/pkgs
+#requirements.txt
+dependencies.txt
+
+
+# Pycharm Project Configurations
+.idea/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
