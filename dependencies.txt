@@ -1,0 +1,8 @@
+# torch with 10.2 cuda
+conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
+
+# gcc & g++ for pointnet2 ops lib
+conda install gcc_linux-64=7.5.0
+conda install gxx_linux-64=7.5.0
+ln -s ~/anaconda3/envs/pc/bin/x86_64-conda_cos6-linux-gnu-g++ ~/anaconda3/envs/pc/bin/gcc
+ln -s ~/anaconda3/envs/pc/bin/x86_64-conda_cos6-linux-gnu-g++ ~/anaconda3/envs/pc/bin/g++

@@ -40,7 +40,7 @@ def sample_and_group(npoint, radius, nsample, xyz, features):
         print("grouped features:", grouped_features.shape)
 
         new_features = torch.cat([grouped_xyz, grouped_features], dim=1) # [B, C+3, npoint, nsample]
-        print("new points: ", new_features.shape)
+        print("new features: ", new_features.shape)
     else:
         new_features = grouped_xyz
 
@@ -63,9 +63,12 @@ def sample_and_group_all(xyz, features):
     device = xyz.device
     B, N, C = xyz.shape
     new_xyz = torch.zeros(B,1,C).to(device)
+    print("new xyz: ", new_xyz.shape)
     grouped_xyz = xyz.view(B, 1, N, C)
+    print("grouped xyz:", grouped_xyz.shape)
     if features is not None:
         new_features = torch.cat([grouped_xyz, features.view(B, 1, N, -1)], dim=-1)
+        print("new features: ", new_features.shape)
     else:
         new_features = grouped_xyz
     return new_xyz, new_features
@@ -90,5 +93,8 @@ if __name__ == '__main__':
     xyz, features = torch.rand(8, 1024, 3), torch.rand(8, 1024, 5)
     xyz, features = xyz.cuda(), features.cuda()
     npoint, radius, nsample = 256, 0.1, 32
+    print('------sample and group------')
     sample_and_group(npoint, radius, nsample, xyz, features)
+
+    print('------sample and group all------')
     sample_and_group_all(xyz, features)
